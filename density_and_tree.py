@@ -13,9 +13,11 @@ y = np.concatenate([np.ones(100), np.zeros(20)])
 # Ajustar el modelo de detección de outliers
 clf = LocalOutlierFactor(n_neighbors=20)
 y_pred = clf.fit_predict(X)
+y_pred = y_pred[:120]
 
 # Separar los datos en outliers y no outliers
-X_train, X_test, y_train, y_test = train_test_split(X[y_pred == 1], y[y_pred == 1], test_size=0.33, random_state=42)
+mask = np.where(y_pred == 1)[0]
+X_train, X_test, y_train, y_test = train_test_split(X[mask], y[mask], test_size=0.33, random_state=42)
 
 # Ajustar un árbol de decisión en los datos no outliers
 dt = DecisionTreeClassifier()
@@ -24,3 +26,4 @@ dt.fit(X_train, y_train)
 # Evaluar el rendimiento del árbol de decisión
 print("Precisión en los datos de entrenamiento:", dt.score(X_train, y_train))
 print("Precisión en los datos de prueba:", dt.score(X_test, y_test))
+

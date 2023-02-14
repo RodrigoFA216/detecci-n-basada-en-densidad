@@ -42,9 +42,9 @@ plt.show()
 # # Convert data to DataFrame
 # df = pd.DataFrame(data, columns=['A', 'B', 'C', 'D', 'E'])
 
-# # Download the Titanic dataset
-# url = "https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv"
-# data = pd.read_csv(url)
+# Download the Titanic dataset
+url = "https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv"
+data = pd.read_csv(url)
 
-# # Print the first 5 rows of the data
-# print(data.head())
+# Print the first 5 rows of the data
+print(data.head())
